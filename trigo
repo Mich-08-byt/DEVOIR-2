@@ -1,0 +1,62 @@
+#include<iostream>
+int main(argc char* argv)
+double calculer_sinus(double w){
+    double sinus=0;
+        double terme =w;
+
+    int n = 0;
+
+    while(true){
+        sinus +=terme;
+        n++;
+
+        terme *= -w *w /((2*n)*(2*n + 1));
+        if(terme <0.0001 && terme > -0.0001){
+                break;
+
+        }
+    }
+    return sinus;
+
+}
+double calculer_cosinus(double w){
+        double cosinus=1;
+                 double terme =1;
+        int n = 1;
+        while(true){
+    terme *= -w *w /((2*n-1)*(2*n));
+    cosinus += terme;
+          if(terme <0.0001 && terme > -0.0001){
+                break;
+        }
+        n++;
+        }
+     return cosinus;
+}
+double calculer_tangente(double w){
+    double sinus =calculer_sinus(w);
+    double cosinus =calculer_cosinus(w);
+
+    if(cosinus !=0){
+        return sinus / cosinus;
+    }else{
+    std::cout <<"tangente indefinie pour w ="<<w<<std::endl;
+    return 0;
+    }
+    }
+    int main(){
+        double w ;
+    std::cout<<"entrez un angle en radians:";
+        std::cin>> w;
+
+    std::cout<<"cosinus:"<<calculer_cosinus(w)<<std::endl;
+    std::cout<<"sinus:"<<calculer_sinus(w)<<std::endl;
+
+    double tangente = calculer_tangente(w);
+    if(tangente !=0){
+          std::cout<<"tangente:"<<calculer_tangente(w)<<std::endl;
+    }
+
+    return 0 ;
+    }
+
